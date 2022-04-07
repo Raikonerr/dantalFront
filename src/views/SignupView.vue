@@ -7,15 +7,15 @@
         <div class="card two bg-white px-5 py-4 mb-3">
            
             <div class="form-group">
-                <input type="email" class="form-control" id="mail" v-model="email" required><label class="form-control-placeholder" for="mail">Email</label></div>
+               <label class="form-control-placeholder" for="mail">Email</label>  <input type="email" class="form-control" id="mail" v-model="email" required></div>
             <div class="form-group">
-                <input type="text" class="form-control" id="nom" v-model="nom"   required><label class="form-control-placeholder" for="name">Last name</label></div>
+                <label class="form-control-placeholder" for="name">Last name</label> <input type="text" class="form-control" id="nom" v-model="nom"   required></div>
             <div class="form-group">
-                <input type="text" class="form-control" id="prenom" v-model="prenom" required><label class="form-control-placeholder" for="name">First name</label></div>
+                <label class="form-control-placeholder" for="name">First name</label> <input type="text" class="form-control" id="prenom" v-model="prenom" required></div>
             <div class="form-group">
-                <input type="text" class="form-control" id="age" v-model="age" required><label class="form-control-placeholder" for="name">age</label></div>
+               <label class="form-control-placeholder" for="name">age</label>  <input type="text" class="form-control" id="age" v-model="age" required></div>
             <div class="form-group">
-                <input type="text" class="form-control" id="ddn" v-model="date_de_naissance" required><label class="form-control-placeholder" for="name">birthday</label></div>
+                <label class="form-control-placeholder" for="name">birthday</label> <input type="text" class="form-control" id="ddn" v-model="date_de_naissance" required></div>
            
             <button type="submit" @click="register()" class="btn btn-warning btn-block btn-lg mt-1 mb-2"><span>signup<i class="fas fa-long-arrow-alt-right ml-2"></i></span></button>
         </div>
