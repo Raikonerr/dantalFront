@@ -31,6 +31,7 @@ import { mapActions } from "vuex";
 import Thefooter from '../components/theFooter.vue'
 import axios from 'axios'
 export default {
+    name : "SignUp",
     data(){
         return{
             email:'',
