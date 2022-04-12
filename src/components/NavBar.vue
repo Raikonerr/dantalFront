@@ -28,10 +28,13 @@
               <router-link class="nav-link text-warning link-r" to="/booking">Appointement</router-link>
             </li>
              <li class="nav-item">
-                <router-link class="nav-link text-warning link-r" to="/signup">Signup</router-link>
+                <router-link class="nav-link text-warning link-r" to="/signup" >Signup</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link text-warning link-r" to="/login">Login</router-link>
+              <router-link class="nav-link text-warning link-r" to="/login" >Login</router-link>
+            </li>
+            <li class="nav-item" v-if="client">
+              <h6 class="nav-link " @click="logout()">Logout</h6>
             </li>
           </ul>
         </div>
@@ -43,10 +46,32 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
     name: 'NavBar',
   components: {
-  }
+  },
+  data() {
+    return {
+     client: "",
+    }
+  },
+  methods: {
+    ...mapActions(["redirectTo"]),
+    clicked(){
+      this.client = localStorage.getItem("client-info");
+      console.log()
+    },
+
+    logout(){
+      localStorage.clear();
+      this.redirectTo({val: "home"});
+       },
+   
+  },
+  mounted() {
+    this.client = localStorage.getItem("client-info");
+  },
 }
 </script>
 
