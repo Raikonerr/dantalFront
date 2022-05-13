@@ -1,4 +1,5 @@
 <template>
+  <NavBar />
   <div class="login">
     
         <div class="d-flex align-items-center justify-content-center mb-5 mt-5">
@@ -28,6 +29,7 @@ import { mapActions } from "vuex";
 import axios from "axios";
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
+import NavBar from '@/components/NavBar.vue';
 import { reactive,computed } from 'vue';
 export default {
     name: "LoginView",
@@ -51,6 +53,9 @@ export default {
         return{
           idC:"",
         }
+    },
+    components:{
+        NavBar,
     },
     methods:{
         ...mapActions(['redirect']),

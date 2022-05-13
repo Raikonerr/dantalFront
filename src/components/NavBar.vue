@@ -24,17 +24,17 @@
             <li class="nav-item">
               <router-link class="nav-link text-warning link-r" to="/">Home</router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="client">
               <router-link class="nav-link text-warning link-r" to="/booking">Appointement</router-link>
             </li>
-             <li class="nav-item">
+             <li class="nav-item" v-if="!client">
                 <router-link class="nav-link text-warning link-r" to="/signup" >Signup</router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="!client">
               <router-link class="nav-link text-warning link-r" to="/login" >Login</router-link>
             </li>
             <li class="nav-item" v-if="client">
-              <h6 class="nav-link " @click="logout()">Logout</h6>
+              <button   class="nav-link  btn-warning" @click="logout()">Logout</button>
             </li>
           </ul>
         </div>
@@ -57,20 +57,21 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["redirectTo"]),
+    ...mapActions(["redirect"]),
     clicked(){
-      this.client = localStorage.getItem("client-info");
       console.log()
     },
 
     logout(){
       localStorage.clear();
-      this.redirectTo({val: "home"});
+      this.redirect({val: "login"});
+      console.log("logout");
        },
    
   },
   mounted() {
     this.client = localStorage.getItem("client-info");
+    console.log(this.client);
   },
 }
 </script>

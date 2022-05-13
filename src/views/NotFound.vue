@@ -1,4 +1,5 @@
 <template>
+<NavBar />
     <h1>there s nothing to do here !</h1>
 </template>
 
@@ -11,4 +12,15 @@ h1{
     justify-content: center;
 }
 </style>
+
+<script>
+import NavBar from '@/components/NavBar.vue';
+
+export default{
+    components:{
+        NavBar
+    },
+}
+
+</script>
 

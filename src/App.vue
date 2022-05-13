@@ -1,13 +1,11 @@
 <template>
-  <nav>
-    <NavBar/>
-  </nav>
+  
   <router-view/>
 </template>
 
 <script>
 // import axios from "axios";
-import NavBar from './components/NavBar.vue'
+
 export default {
   name: 'App', data(){
     return{
@@ -16,7 +14,7 @@ export default {
     }
   },
   components: {
-    NavBar,
+    
 
     },
     methods :{

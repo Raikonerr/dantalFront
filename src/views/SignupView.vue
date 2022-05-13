@@ -1,4 +1,6 @@
 <template>
+
+    <NavBar />
 <div class="signup">
    
     <div class="container d-flex justify-content-center">
@@ -30,6 +32,7 @@
 import { mapActions } from "vuex";
 import Thefooter from '../components/theFooter.vue'
 import axios from 'axios'
+import NavBar from '@/components/NavBar.vue'
 export default {
     name : "SignUp",
     data(){
@@ -72,7 +75,8 @@ export default {
          }
     },
     components: {
-        Thefooter
+        Thefooter,
+        NavBar,
     },
         
     }

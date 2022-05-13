@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <NavBar />
+    
   <div class="">
     <section id="hero">
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -93,20 +96,40 @@
       </div>
     </section>
     <theFooter/>
-  </div>
+  </div></div>
 </template>
 
 <script>
 // @ is an alias to /src
-import theFooter from '../components/theFooter.vue'
+import theFooter from '../components/theFooter.vue';
+import NavBar from '@/components/NavBar.vue';
 
 
 export default {
   name: 'HomeView',
   components: {
     theFooter,
+    NavBar
    
   },
+  data() {
+    return {
+      client_name:"",
+      
+     
+    }
+  },
+  mounted() {
+        // let client = localStorage.getItem("client-info");
+        // if (!client) {
+        //     this.redirect({
+        //         val: 'signup'
+        //     });
+        // } else {
+        //     this.client_name = JSON.parse(client).name;
+        // }
+
+    },
 }
 </script>
 
