@@ -75,6 +75,7 @@ export default {
               var object={};
               form.forEach((value,key)=> object[key]=value);
               localStorage.setItem("client-info",JSON.stringify(object));
+              
               this.redirect({val:'home'})
             }else{
 

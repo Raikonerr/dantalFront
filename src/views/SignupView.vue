@@ -15,9 +15,9 @@
             <div class="form-group">
                 <label class="form-control-placeholder" for="name">First name</label> <input type="text" class="form-control" id="prenom" v-model="prenom" required></div>
             <div class="form-group">
-               <label class="form-control-placeholder" for="name">age</label>  <input type="text" class="form-control" id="age" v-model="age" required></div>
+               <label class="form-control-placeholder" for="name">age</label>  <input type="number" class="form-control" id="age" v-model="age" required></div>
             <div class="form-group">
-                <label class="form-control-placeholder" for="name">birthday</label> <input type="text" class="form-control" id="ddn" v-model="date_de_naissance" required></div>
+                <label class="form-control-placeholder" for="name">birthday</label> <input type="date" class="form-control" id="ddn" v-model="date_de_naissance" required></div>
            
             <button type="submit" @click="register()" class="btn btn-warning btn-block btn-lg mt-1 mb-2"><span>signup<i class="fas fa-long-arrow-alt-right ml-2"></i></span></button>
         </div>
@@ -63,11 +63,12 @@ export default {
                 }
             })
             if(res.status==200){
-                alert("client added successfully");
+                
                 var object={};
                  form.forEach((value,key)=> object[key]=value);
                  localStorage.setItem("client-info",JSON.stringify(object));
                 this.redirect({val:"login"});
+                alert(res.data.message.idC);
             }else{
                 console.log("error");
             }

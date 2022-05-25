@@ -1,75 +1,83 @@
 <template>
-<div class="alert alert-success" role="alert" v-if="success">
-    {{ success }}
-</div>
-<div class="alert alert-warning" v-if="error" role="alert">
-    {{ error }}
-</div>
-<div class="container">
-    <form @click.prevent>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Search for an appointement</label>
-            <input type="date" class="form-control" v-model="date" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <span class="error-feedback text-danger" v-if="v$.date.$error">{{v$.date.$errors[0].$message}}</span>
-        </div>
-        <button type="submit" @click="getCreneau()" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="alert alert-success" role="alert" v-if="success">
+        {{ success }}
+    </div>
+    <div class="alert alert-warning" v-if="error" role="alert">
+        {{ error }}
+    </div>
+    <div class="container">
+        <form @click.prevent>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Search for an appointement</label>
+                <input type="date" class="form-control" v-model="date" id="exampleInputEmail1">
+                <span class="error-feedback text-danger" v-if="v$.date.$error">{{ v$.date.$errors[0].$message }}</span>
+            </div>
+            <button type="submit" @click="getCreneau()" class="btn btn-primary">Submit</button>
+        </form>
 
-</div>
-<div class="container mt-3" v-if="creneau.length>0">
+    </div>
+    <div class="container mt-3" v-if="creneau.length > 0">
 
-    <h1 class="text-center">All creneau availabale</h1>
-    <table class="table" >
-        <thead>
-            <tr >
+        <h1 class="text-center">All creneau availabale</h1>
+        <table class="table">
+            <thead>
+                <tr>
 
-                <th scope="col">Start</th>
-                <th scope="col">End</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="c in creneau" :key="c.idCr">
-                <th scope="row">{{c.idCr+1}}</th>
-                <td>{{c.debut}}</td>
-                <td>{{c.fin}}</td>
-                <td>
-                    <div class="container">
-                        <!-- Button trigger modal -->
-                        <button type="button" @click="passingData(c)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            Rdv
-                        </button>
+                    <th scope="col">Start</th>
+                    <th scope="col">End</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="c in creneau" :key="c.idCr">
+                    <th scope="row">{{ c.idCr + 1 }}</th>
+                    <td>{{ c.debut }}</td>
+                    <td>{{ c.fin }}</td>
+                    <td>
+                        <div class="container">
+                            <!-- Button trigger modal -->
+                            <button type="button" @click="passingData(c)" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">
+                                Rdv
+                            </button>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Add Appointment</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form @click.prevent>
-                                            <div class="mb-1">
-                                                <label for="exampleInputEmail1" class="form-label">Subject of Appointment</label>
-                                                <input type="text" class="form-control" v-model="sujet_rdv" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" @click="addRdv()" class="btn btn-primary">Understood</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Add Appointment</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form @click.prevent>
+                                                <div class="mb-1">
+                                                    <label for="exampleInputEmail1" class="form-label">Subject of
+                                                        Appointment</label>
+                                                    <input type="text" class="form-control" v-model="sujet_rdv"
+                                                        id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="button" @click="addRdv()" data-bs-dismiss="modal"
+                                                class="btn btn-primary">Add</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </template>
 
@@ -90,6 +98,7 @@ export default {
             idCr: "",
             sujet_rdv: "",
             date: "",
+            min: "",
             success: "",
             error: ""
         }
@@ -103,7 +112,8 @@ export default {
         }
     },
     async mounted() {
-        // await this.getCreneau();
+        this.min = new Date().toISOString().slice(0, 10);
+        console.log(this.min);
     },
     methods: {
         async getCreneau() {
@@ -111,8 +121,11 @@ export default {
             if (!this.v$.$error) {
                 let res = await axios.get("http://localhost/dentaire/client/read/" + this.date);
                 if (res.status == 200) {
-                    console.log(res.data)
+            
+                    console.log(res.data);
+
                     this.creneau = res.data;
+                    //  console.log( this.creneau);
                 } else {
                     console.log("error")
                 }
@@ -149,10 +162,10 @@ export default {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            if(res.status==200){
-                this.success="Appointment created successfully";
-            }else{
-                this.error="Error on created new Appointment";
+            if (res.status == 200) {
+                this.success = "Appointment created successfully";
+            } else {
+                this.error = "Error on created new Appointment";
             }
         }
     }
@@ -160,5 +173,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
